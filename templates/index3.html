@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<header>
+
+</header>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <meta charset=utf-8 />
+    <title>Hitit</title>
+    <div id="app"></div>
+    <div id="container">
+        <div class="row">
+          <div class="name">Player1</div><div class="score">430</div>
+        </div>
+      
+        <div class="row">
+          <div class="name">Player2</div><div class="score">580</div>
+        </div>
+      
+        <div class="row">
+          <div class="name">Player3</div><div class="score">310</div>
+        </div>
+      
+        <div class="row">
+          <div class="name">Player4</div><div class="score">640</div>
+        </div>
+      
+        <div class="row">
+          <div class="name">Player5</div><div class="score">495</div>
+        </div>
+      </div>
+</head> 
+<body>
+    <button onload="onload();">
+        <img src="https://www.freepnglogos.com/uploads/target-png/target-local-events-louisiana-bowhunter-2.png" width="20px">
+    </button>
+</body>
+<footer>
+
+</footer>
+
+<style>
+    .base-timer {
+    float: left;
+    text-align: left;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    }
+
+    .base-timer__svg {
+    transform: scaleX(-1);
+    }
+
+    .base-timer__circle {
+    fill: none;
+    stroke: none;
+    }
+
+    .base-timer__path-elapsed {
+    stroke-width: 7px;
+    stroke: white;
+    }
+
+    .base-timer__path-remaining {
+    stroke-width: 7px;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+    transition: 1s linear all;
+    fill-rule: nonzero;
+    stroke: currentColor;
+    }
+
+    .base-timer__path-remaining.green {
+    color: rgb(65, 184, 131);
+    }
+
+    .base-timer__path-remaining.orange {
+    color: orange;
+    }
+
+    .base-timer__path-remaining.red {
+    color: red;
+    }
+
+    .base-timer__label {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    }
+    #container, #app{
+        display: inline-block;
+    }
+    
+    #container {
+        position: relative;
+        float: right;
+        width: 200px;
+        height: auto;
+
+    }
+
+    .row {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 40px;
+        border-bottom: 1px solid #AFAF  AF;
+    }
+
+    .name {
+        padding-left: 0px;
+        position: relative;
+        display: inline-block;
+        width: 45%;
+        line-height: 45px;
+    }
+
+    .score {
+        padding-right: 10px;
+        position: relative;
+        display: inline-block;
+        width: 25%;
+    }
+
+    .row:nth-child(1) {
+        background: gold;
+    }
+
+    .row:nth-child(2) {
+        background: #c0c0c0;
+    }
+
+    .row:nth-child(3) {
+        background: #cd7f32;
+    }
+
+    button{
+        align-self: left;
+        background-color: black;
+        position: absolute;
+        padding: 0;
+        border: 0;
+        background: none;
+    }
+    #app{
+      text-align: center;
+      float: left;
+    }
+
+    body
+    {
+        text-align: center;
+        background-color: black;
+    } 
+    /* Gold */
+    .row:nth-child(1) {background: gold;}
+    /* Silver */
+    .row:nth-child(2) {background: #c0c0c0;}
+    /* Bronze */
+    .row:nth-child(3) {background: #cd7f32;}
+</style>
+
+<script>
+    var score;
+    var timer;
+    var target = document.querySelector("button");
+    target.addEventListener('click', change);
+
+const FULL_DASH_ARRAY = 283;
+const WARNING_THRESHOLD = 10;
+const ALERT_THRESHOLD = 5;
+
+const COLOR_CODES = {
+  info: {
+    color: "green"
+  },
+  warning: {
+    color: "orange",
+    threshold: WARNING_THRESHOLD
+  },
+  alert: {
+    color: "red",
+    threshold: ALERT_THRESHOLD
+  }
+};
+
+const TIME_LIMIT = 30;
+let timePassed = 0;
+let timeLeft = TIME_LIMIT;
+let timerInterval = null;
+let remainingPathColor = COLOR_CODES.info.color;
+
+document.getElementById("app").innerHTML = `
+<div class="base-timer">
+  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g class="base-timer__circle">
+      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+      <path
+        id="base-timer-path-remaining"
+        stroke-dasharray="283"
+        class="base-timer__path-remaining ${remainingPathColor}"
+        d="
+          M 50, 50
+          m -45, 0
+          a 45,45 0 1,0 90,0
+          a 45,45 0 1,0 -90,0
+        "
+      ></path>
+    </g>
+  </svg>
+  <span id="base-timer-label" class="base-timer__label">${formatTime(
+    timeLeft
+  )}</span>
+</div>
+`;
+
+startTimer();
+
+function onTimesUp() {
+  clearInterval(timerInterval);
+}
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timePassed = timePassed += 1;
+    timeLeft = TIME_LIMIT - timePassed;
+    document.getElementById("base-timer-label").innerHTML = formatTime(
+      timeLeft
+    );
+    setCircleDasharray();
+    setRemainingPathColor(timeLeft);
+
+    if (timeLeft === 0) {
+      onTimesUp();
+    }
+  }, 1000);
+}
+
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  if (seconds < 10) {
+    seconds = `0${seconds}`;
+  }
+
+  return `${minutes}:${seconds}`;
+}
+
+function setRemainingPathColor(timeLeft) {
+  const { alert, warning, info } = COLOR_CODES;
+  if (timeLeft <= alert.threshold) {
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.remove(warning.color);
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.add(alert.color);
+  } else if (timeLeft <= warning.threshold) {
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.remove(info.color);
+    document
+      .getElementById("base-timer-path-remaining")
+      .classList.add(warning.color);
+  }
+}
+
+function calculateTimeFraction() {
+  const rawTimeFraction = timeLeft / TIME_LIMIT;
+  return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+}
+
+function setCircleDasharray() {
+  const circleDasharray = `${(
+    calculateTimeFraction() * FULL_DASH_ARRAY
+  ).toFixed(0)} 283`;
+  document
+    .getElementById("base-timer-path-remaining")
+    .setAttribute("stroke-dasharray", circleDasharray);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  let elements = []
+  let container = document.querySelector('#container')
+  // Add each row to the array
+  container.querySelectorAll('.row').forEach(el => elements.push(el))
+  // Clear the container
+  container.innerHTML = ''
+  // Sort the array from highest to lowest
+  elements.sort((a, b) => b.querySelector('.score').textContent - a.querySelector('.score').textContent)
+  // Put the elements back into the container
+  elements.forEach(e => container.appendChild(e))
+})
+
+function onload()
+{
+    var x;
+    var y;
+    target
+}
+function change()
+{
+    var i = Math.floor(Math.random()*800)+1;
+    var j = Math.floor(Math.random()*500)+1;
+    target.style.left = i+"px";
+    target.style.top = j+"px";
+}   
+</script>
