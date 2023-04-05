@@ -99,6 +99,7 @@ body {
     font-weight: bold;
     border-radius: 5px;
 }
+
 /* MODAL */
 .modal {
     display: none;
@@ -106,31 +107,17 @@ body {
     z-index: 1;
     left: 0;
     top: 0;
-    width: 50%;
-    height: 50%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+    align-content: center;
+    text-align: center;
 }

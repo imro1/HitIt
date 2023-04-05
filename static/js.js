@@ -58,13 +58,8 @@ document.getElementById("app").innerHTML = `
 </div>
 `;
 var modal = document.getElementById("myModal");
-var span = document.getElementsByClassName("close")[0];
 startTimer();
-window.onclick = function(event) {
-  if(event.target == modal) {
-    modal.style.display="none";
-  }
-}
+
 function onTimesUp() {
   clearInterval(timerInterval);
   modal.style.display="block";
