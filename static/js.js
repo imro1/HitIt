@@ -6,10 +6,18 @@ target.addEventListener('click', change);
 
 var target = document.getElementById("target");
 var display = document.getElementById("display");
-target.onclick = function (){
+var showCount = document.getElementById("showCount");
+
+function goToHomePage() {
+  window.location.href = "/index";
+}
+
+target.onclick = function () {
   count++;
   display.innerHTML = count;
+  showCount.innerHTML = count;
 }
+
 const FULL_DASH_ARRAY = 283;
 const WARNING_THRESHOLD = 10;
 const ALERT_THRESHOLD = 5;
@@ -62,7 +70,7 @@ startTimer();
 
 function onTimesUp() {
   clearInterval(timerInterval);
-  modal.style.display="block";
+  modal.style.display = "block";
 }
 
 function startTimer() {
@@ -72,6 +80,7 @@ function startTimer() {
     document.getElementById("base-timer-label").innerHTML = formatTime(
       timeLeft
     );
+
     setCircleDasharray();
     setRemainingPathColor(timeLeft);
 

@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, send_from_directory
 
 app = Flask(__name__)
 
-@app.route("/hitit")
+@app.route("/index")
 def index():
     return render_template("index.html")
 
@@ -17,3 +17,7 @@ def normal():
 @app.route("/hard")
 def hard():
     return render_template("hard.html")     
+
+@app.route("/images/<path:path>")
+def images(path):
+    return send_from_directory("images", path)

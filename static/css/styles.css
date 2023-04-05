@@ -102,12 +102,16 @@ body {
 
 /* MODAL */
 .modal {
-    display: none;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
+    width: 500px;
     overflow: auto;
+    align-items: center;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -118,6 +122,19 @@ body {
     border: 1px solid #888;
     width: 50%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-    align-content: center;
     text-align: center;
+    font-size: larger;
+}
+
+button i {
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+.home {
+    padding-top: 50px;
+}
+
+.reset {
+    padding-left: 1480px;
+    padding-top: 50px;
 }
