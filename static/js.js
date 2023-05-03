@@ -36,7 +36,7 @@ const COLOR_CODES = {
   }
 };
 
-const TIME_LIMIT = 5;
+const TIME_LIMIT = 10;
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
@@ -70,7 +70,7 @@ startTimer();
 
 function onTimesUp() {
   clearInterval(timerInterval);
-  modal.style.display = "block";
+  modal.style.display = "flex";
 }
 
 function startTimer() {

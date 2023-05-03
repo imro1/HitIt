@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Reaction Time Exercise</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Reaction Time Exercise</h1>
+    <p>Click the box as soon as it turns green!</p>
+    <div id="box" onclick="checkTime()"></div>
+    <p id="result"></p>
+    <button onclick="restart()" id="restart-button" disabled>Restart</button>
+    <script>
+        var startTime, endTime, clicks = 0;
+
+        function getRandomTime(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function showBox() {
+            var delay = getRandomTime(1000, 6000);
+            setTimeout(function () {
+                document.getElementById("box").style.backgroundColor = "green";
+                startTime = new Date();
+            }, delay);
+        }
+
+        function checkTime() {
+            clicks++;
+            if (clicks == 1) {
+                if (document.getElementById("box").style.backgroundColor == "green") {
+                    endTime = new Date();
+                    var reactionTime = (endTime - startTime) / 1000;
+                    document.getElementById("result").innerHTML = "Your reaction time is " + reactionTime.toFixed(3) + " seconds.";
+                } else {
+                    document.getElementById("result").innerHTML = "You clicked too soon!";
+                    document.getElementById("box").style.backgroundColor = "red";
+                }
+                document.getElementById("box").style.backgroundColor = "red";
+                document.getElementById("restart-button").disabled = false;
+            }
+        }
+
+        function restart() {
+            clicks = 0;
+            startTime = null;
+            endTime = null;
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("box").style.backgroundColor = "red";
+            document.getElementById("restart-button").disabled = true;
+            setTimeout(showBox, 1000);
+        }
+
+        setTimeout(showBox, 1000);
+    </script>
+</body>
+
+</html>

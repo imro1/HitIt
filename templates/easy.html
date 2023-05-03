@@ -18,17 +18,19 @@
 
 <body>
     <div id="app"></div>
-    <button onClick="click()" id="target" onload="onload();">
+    <button onClick="click()" id="target" class="target" onload="onload();">
         <img src="https://www.freepnglogos.com/uploads/target-png/target-local-events-louisiana-bowhunter-2.png"
-            width="75px">
+             width="75px">
     </button>
     <p><span id="display">0</span></p>
     <div id="myModal" class="modal">
         <div class="modal-content">
             <p>Score:</p>
             <p><span id="showCount">0</span></p>
-            <button onclick="goToHomePage()" class="home"><a href="/index"><i class="bi bi-house-door"></i></a></button>
-            <button class="reset"><a href="/easy"><i class="bi bi-arrow-counterclockwise"></i></a></button>
+            <div class="buttons">
+                <a href="/index"><button id="home" class="home" style="--clr:#FF44CC"><span>Home</span><i></i></button></a>
+                <a href="/easy"><button id="reset" class="reset" style="--clr:#FF0000"><span>Reset</span><i></i></button></a>
+            </div>
         </div>
     </div>
     <script type="text/javascript" src="/static/js.js"></script>

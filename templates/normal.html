@@ -24,13 +24,17 @@
     </button>
     <p><span id="display">0</span></p>
     <div id="myModal" class="modal">
-    <div class="modal-content">
-        <p>Score:</p>
-        <p><span id="showCount">0</span></p>
-        <button class="home"><a href="/index"><i class="bi bi-house-door"></i></a></button>
-        <button class="reset"><a href="/normal"><i class="bi bi-arrow-counterclockwise"></i></a></button>
+        <div class="modal-content">
+            <p>Score:</p>
+            <p><span id="showCount">0</span></p>
+            <div class="buttons">
+                <a href="/index"><button id="home" class="home"
+                        style="--clr:#FF44CC"><span>Home</span><i></i></button></a>
+                <a href="/hard"><button id="reset" class="reset"
+                        style="--clr:#FF0000"><span>Reset</span><i></i></button></a>
+            </div>
+        </div>
     </div>
-</div>
     <script type="text/javascript" src="/static/js.js"></script>
 
 </body>
