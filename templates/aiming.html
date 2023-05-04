@@ -76,7 +76,7 @@
             document.getElementById("final-score").innerHTML = score;
             var modal = document.getElementById("modal");
             modal.style.display = "flex";
-        }
+        }   
 
         function restart() {
             location.reload();
@@ -88,6 +88,15 @@
 </html>
 
 <style>
+    img {
+            -drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+         }
+
     button {
         background-color: blue;
         /* Green background color */
