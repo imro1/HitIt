@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Exercise Tracker</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 36px;
+      color: #333;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #666;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .exercise {
+      position: relative;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px 0;
+    }
+
+    .exercise:hover .exercise-info {
+      transform: translateY(0);
+    }
+
+    .exercise-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .exercise-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 20px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .exercise-name {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .exercise-description {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: gray;
+    }
+
+    .exercise-button {
+      display: block;
+      width: 100%;
+      background-color: #4CAF50;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      margin-top: 10px;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .exercise-button:hover {
+      background-color: #3E8E41;
+    }
+  </style>
+</head>
+
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Exercises</h1>
+  <p>Choose an exercise to aim better</p>
+  <div class="signout-button">
+    <a href='/signout'>sign out</a>
+  </div>
+  <div class="container">
+    <div class="exercise">
+      <div class="exercise-image"
+        style="background-image: url('https://via.placeholder.com/400x250.png?text=Exercise+1');"></div>
+      <div class="exercise-info">
+        <h2 class="exercise-name">Aiming</h2>
+        <p class="exercise-description">You have 30 seconds, you need to hit the targets as many times as possible before the time runs out!</p>
+        <a href="{{ url_for('aiming') }}" class="exercise-button">Start Exercise</a>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="exercise-image"
+        style="background-image: url('https://via.placeholder.com/400x250.png?text=Exercise+2');"></div>
+      <div class="exercise-info">
+        <h2 class="exercise-name">Reaction Time</h2>
+        <p class="exercise-description">Improve your reaction time by sharpening your reaction with this exercise!</p>
+        <a href="{{ url_for('reactionTime') }}" class="exercise-button">Start Exercise</a>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="exercise-image"
+        style="background-image: url('https://via.placeholder.com/400x250.png?text=Exercise+3');"></div>
+      <div class="exercise-info">
+        <h2 class="exercise-name">Tracking</h2>
+        <p class="exercise-description">Having problems with tracking? Check out this exercise to help you improve your tracking skill!</p>
+        <a href="{{ url_for('tracking') }}" class="exercise-button">Start Exercise</a>
+      </div>
+    </div>
+  </div>
+  </body>
+{% endblock %}
