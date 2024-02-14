@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>For You</title>
+    <title>For Jhena</title>
     <link rel="stylesheet" href="style/styles.css" />
   </head>
   <head>
@@ -18,17 +18,31 @@
     <div class="containar">
       <img id="yay1" src="assets/YES.gif" />
 
-      <p id="yay">YAYYY THANK YOU FOR CHOOSING YES(not because you don't have a choice <3)</p>
+      <img id="yay2" src="assets/dancing.gif" />
+
+      <p id="yay">Can't wait to see you my love, and can't wait to spend the rest of my life with you babylovely.</p>
 
       <img id="can1" src="assets/pinkEvo.png" />
 
       <p id="can">Will You Be the EVO to my Lancer?</p>
 
+      <p id="noo">Why you choosing No bebe :(</p>
+      
       <button id="yes">Yes</button>
 
       <button id="no">No</button>
     </div>
 
+    <audio id="yesSound">
+      <source src="assets/YESsound.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <audio autoplay id="background">
+      <source src="assets/background.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+ 
     <script>
       const yesBtn = document.getElementById("yes");
 
@@ -38,14 +52,20 @@
 
       const yayText1 = document.getElementById("yay1");
 
+      const yayText2 = document.getElementById("yay2");
+
       const can1 = document.getElementById("can1");
 
       const can = document.getElementById("can");
+
+      const noo = document.getElementById("noo");
 
       noBtn.addEventListener("click", () => {
         yesBtn.style.width = `${yesBtn.offsetWidth + 40}px`;
 
         yesBtn.style.height = `${yesBtn.offsetHeight + 40}px`;
+
+        noo.style.display = "block";
       });
 
       yesBtn.addEventListener("click", () => {
@@ -53,12 +73,19 @@
 
         yayText1.style.display = "block";
 
+        yayText2.style.display = "block";
+
         can.style.display = "none";
 
         can1.style.display = "none";
 
         yesBtn.style.display = "none";
         noBtn.style.display = "none";
+
+        noo.style.display = "none";
+
+        yesSound.play();
+        background.pause();
       });
     </script>
   </body>

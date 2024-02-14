@@ -90,6 +90,18 @@ button {
   font-size: 20px;
 }
 
+#noo {
+  display: none;
+
+  position: absolute;
+
+  margin-top: 300px;
+
+  font-weight: 900;
+
+  font-size: 20px;
+}
+
 #yay1 {
   display: none;
 
@@ -98,6 +110,16 @@ button {
   position: absolute;
 
   margin-top: -250px;
+}
+
+#yay2 {
+  display: none;
+
+  width: 150px;
+
+  position: absolute;
+
+  margin-top: 320px;
 }
 
 #can1 {
