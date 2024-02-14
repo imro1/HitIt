@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For You</title>
+    <link rel="stylesheet" href="style/styles.css" />
+  </head>
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="containar">
+      <img id="yay1" src="assets/YES.gif" />
+
+      <p id="yay">YAYYY THANK YOU FOR CHOOSING YES(not because you don't have a choice <3)</p>
+
+      <img id="can1" src="assets/pinkEvo.png" />
+
+      <p id="can">Will You Be the EVO to my Lancer?</p>
+
+      <button id="yes">Yes</button>
+
+      <button id="no">No</button>
+    </div>
+
+    <script>
+      const yesBtn = document.getElementById("yes");
+
+      const noBtn = document.getElementById("no");
+
+      const yayText = document.getElementById("yay");
+
+      const yayText1 = document.getElementById("yay1");
+
+      const can1 = document.getElementById("can1");
+
+      const can = document.getElementById("can");
+
+      noBtn.addEventListener("click", () => {
+        yesBtn.style.width = `${yesBtn.offsetWidth + 40}px`;
+
+        yesBtn.style.height = `${yesBtn.offsetHeight + 40}px`;
+      });
+
+      yesBtn.addEventListener("click", () => {
+        yayText.style.display = "block";
+
+        yayText1.style.display = "block";
+
+        can.style.display = "none";
+
+        can1.style.display = "none";
+
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
